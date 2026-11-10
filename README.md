@@ -1,12 +1,6 @@
-# [Project name]
+# Campus Swap
 
-> How to use this template (Course Project brief, section 5):
-> 1. Rename this file to `README.md` and put it in the root of your repository,
->    next to `backend/` and `frontend/`.
-> 2. Replace everything in [square brackets], brackets included.
-> 3. Delete every line that starts with `>`, like this one.
-> 4. Keep the headings and their numbers. Do not rename, reorder or delete sections.
-> 5. Push to `main` by **Thursday 12 November 2026, 23:59** (Submission 1).
+
 
 **Course:** Electronic Business Development (BINF 503) · Winter 2026
 **Instructor:** Dr. Nourhan Hamdi
@@ -14,68 +8,64 @@
 
 ## 1. Team
 
-> Use the GitHub username each member commits from. A team of 5 deletes the last row.
+
 
 | Name | Student ID | Tutorial group | GitHub username |
 |---|---|---|---|
-| [Nour Elgazzar] | [16008393] | [T5] | [gazzar807] |
-| [Ziad Riad] | [16005560] | [T5] | [ziad2244] |
-| [Yuanna Boules] | [16001627] | [T5] |[yuanna-boules] |
-| [Mira Mahmoud] | [16008795] | [T5] | [miraafandy] |
-| [Sama Ashraf] | [16003695] | [T5] | [sama2325] |
-| [Logyne Hegazi] | [17005452] | [T8] | [Logynehegazi] |
+| Nour Elgazzar | 16008393 | T5 | gazzar807 |
+| Ziad Riad | 16005560 | T5 | ziad2244 |
+| Yuanna Boules | 16001627 | T5 |yuanna-boules |
+| Mira Mahmoud | 16008795 | T5 | miraafandy |
+| Sama Ashraf | 16003695 | T5 | sama2325 |
+| Logyne Hegazi | 17005452 | T8 | Logynehegazi |
 
 ## 2. The idea
 
-> One short paragraph: what the application is, who it is for, and what problem it solves.
 
-[Your paragraph]
+Campus Swap is a peer-to-peer campus marketplace built exclusively for university students to buy, sell, and exchange course textbooks, lab equipment, study tools, and electronics. It solves the problem of unsafe off-campus meetups, generic commercial seller spam, and overpriced academic materials by restricting platform access to verified university members and organizing listed items directly by course codes and academic majors.
 
 ## 3. Features
 
 ### 3.1 The full product
 
-> Everything the complete product could do, including features you will not
-> build in this course. One line per feature.
 
-- [Feature]
-- [Feature]
-- [Feature]
+- User registration and JWT authentication system.
+- Product listing creation with textbook condition, course code, and image links.
+- Buyer purchase offer submission and status tracking.
+- Seller offer acceptance/rejection dashboard with automatic product status updates.
+- Star rating and written feedback review system for sellers.
+- Admin moderation portal for flagging and deleting listings.
+- Real-time in-app chat messaging between buyers and sellers.
+- Interactive campus map with designated safe pickup location pins.
+- AI-powered price recommendation engine based on textbook condition.
+- Push notifications for price drop alerts and incoming buy requests.
 
 ### 3.2 The use cases we will build
 
-> One per member: 5 or 6. Registration and login is use case 1: keep it, and
-> adjust the row to your project. Every use case must change data: create,
-> update or delete something. A team of 5 deletes the last row.
 
 | # | Use case | What the user does | What they see | What is stored |
 |---|---|---|---|---|
 | 1 | Registration and login | Registers with name, email and password; logs in with email and password | Their home page, with their name in the header | A User, with the password hashed |
-| 2 | [Use case] | [What the user does] | [What they see] | [What is stored] |
-| 3 | [Use case] | [What the user does] | [What they see] | [What is stored] |
-| 4 | [Use case] | [What the user does] | [What they see] | [What is stored] |
-| 5 | [Use case] | [What the user does] | [What they see] | [What is stored] |
-| 6 | [Use case] | [What the user does] | [What they see] | [What is stored] |
+| 2 | Create product listing | Fills out listing form with title, description, price, condition, course code, and image URL | Success notification and their new item card live in the catalog | A Product document linked to the seller's User ID |
+| 3 | Submit purchase offer | Views product page, enters an offered price and an optional note, and submits request | Offer submission modal and status set to "Pending Approval" on buyer dashboard | An Offer document linked to the buyer ID and product ID |
+| 4 | Accept or reject purchase offer | Seller views incoming offers on their dashboard and clicks Accept or Reject | Offer badge updates to "Accepted"/"Rejected" and product updates to "Sold" if accepted | Updates the target Offer status field, and updates Product status to "sold" |
+| 5 | Submit seller review | Buyer selects a 1–5 star rating and types written feedback for a seller | Confirmation toast and the new review card displayed on the seller's profile | A Review document linked to the buyer ID and seller ID |
+| 6 | Delete listing (Admin moderation) | Admin accesses moderation panel and clicks Delete Listing on a reported item | Listing card removed completely from both admin panel and public catalog | Deletes the target Product document from MongoDB (findByIdAndDelete) |
 
 ## 4. Who owns what
 
-> Each member owns one use case from 3.2 and builds it end to end: the React
-> pages, the API routes, the controllers and the models it needs.
 
 | Member | Use case |
 |---|---|
-| [Name] | 1. Registration and login |
-| [Name] | [2. Use case] |
-| [Name] | [3. Use case] |
-| [Name] | [4. Use case] |
-| [Name] | [5. Use case] |
-| [Name] | [6. Use case] |
+| Logyne Hegazi | 1. Registration and login |
+| Sama Ashraf | 2. Create product listing |
+| Yuanna Boules | 3. Submit purchase offer |
+| Ziad Riad | 4. Accept or reject purchase offer |
+| Mira Mahmoud | 5. Submit seller review |
+| Nour Elgazzar | 6. Delete listing (Admin moderation) |
 
 ## 5. Data model
 
-> The Mongoose schema of every model you plan to use, one heading per model.
-> The User schema is given: add fields if you need them. Add a heading for
-> each extra model you need.
 
 ### User
 
@@ -84,13 +74,48 @@ const userSchema = new mongoose.Schema({
   name: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true }, // stored hashed, never as plain text
-});
+  major: { type: String },
+  role: { type: String, enum: ['student', 'admin'], default: 'student' }
+}, { timestamps: true });
 ```
 
-### [Model name]
+### Product
 
 ```js
-// [Your schema]
+const productSchema = new mongoose.Schema({
+  seller: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+  title: { type: String, required: true },
+  description: { type: String, required: true },
+  price: { type: Number, required: true },
+  condition: { type: String, enum: ['New', 'Like New', 'Used'], required: true },
+  category: { type: String, required: true },
+  courseCode: { type: String },
+  imageUrl: { type: String },
+  status: { type: String, enum: ['available', 'sold'], default: 'available' }
+}, { timestamps: true });
+```
+
+### Offer
+
+```js
+const offerSchema = new mongoose.Schema({
+  product: { type: mongoose.Schema.Types.ObjectId, ref: 'Product', required: true },
+  buyer: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+  offeredPrice: { type: Number, required: true },
+  note: { type: String },
+  status: { type: String, enum: ['pending', 'accepted', 'rejected'], default: 'pending' }
+}, { timestamps: true });
+```
+
+### Review
+
+```js
+const reviewSchema = new mongoose.Schema({
+  seller: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+  buyer: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+  rating: { type: Number, required: true, min: 1, max: 5 },
+  comment: { type: String, required: true }
+}, { timestamps: true });
 ```
 
 ## 6. Run it locally
