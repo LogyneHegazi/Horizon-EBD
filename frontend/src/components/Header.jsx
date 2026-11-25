@@ -23,6 +23,8 @@ function Header({ user, onLogout }) {
 
             <Link to="/profile">Profile</Link>
 
+            <Link to="/my-reviews">My Reviews</Link>
+
             <span>Hi, {user.name}</span>
 
             <button onClick={handleLogout} style={{ padding: '6px 12px' }}>
