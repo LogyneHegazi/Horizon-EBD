@@ -6,6 +6,7 @@ const cors = require('cors');
 const connectDB = require('./db');
 
 const authRoutes = require('./routes/authRoutes');
+const reviewRoutes = require('./routes/reviewRoutes');
 const tutoringListingRoutes = require('./routes/tutoringListingRoutes');
 
 const app = express();
@@ -20,6 +21,7 @@ app.get('/api/health', (req, res) => {
 
 // Authentication routes
 app.use('/api/auth', authRoutes);
+app.use('/api/reviews', reviewRoutes);
 
 // Tutoring listing routes
 app.use('/api/listings', tutoringListingRoutes);
