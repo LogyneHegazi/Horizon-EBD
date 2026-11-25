@@ -1,19 +1,37 @@
+
 require('dotenv').config();
+
 const express = require('express');
 const cors = require('cors');
 const connectDB = require('./db');
+
 const authRoutes = require('./routes/authRoutes');
+const tutoringListingRoutes = require('./routes/tutoringListingRoutes');
+
 const app = express();
+
 app.use(cors());
 app.use(express.json());
 
-connectDB();
-
+// Health check
 app.get('/api/health', (req, res) => {
-  res.status(200).json({ status: 'ok' });
+    res.status(200).json({ status: 'ok' });
 });
+
+// Authentication routes
 app.use('/api/auth', authRoutes);
+
+// Tutoring listing routes
+app.use('/api/listings', tutoringListingRoutes);
+
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Backend running on http://localhost:${PORT}`);
-});
+
+const startServer = async () => {
+    await connectDB();
+
+    app.listen(PORT, () => {
+        console.log(`Backend running on http://localhost:${PORT}`);
+    });
+};
+
+startServer();

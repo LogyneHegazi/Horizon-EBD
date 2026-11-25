@@ -1,184 +1,346 @@
-.counter {
-  font-size: 16px;
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: var(--accent);
-  background: var(--accent-bg);
-  border: 2px solid transparent;
-  transition: border-color 0.3s;
-  margin-bottom: 24px;
 
-  &:hover {
-    border-color: var(--accent-border);
-  }
-  &:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
-  }
+/* General page design */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f5fb;
+    color: #25233a;
 }
 
-.hero {
-  position: relative;
-
-  .base,
-  .framework,
-  .vite {
-    inset-inline: 0;
-    margin: 0 auto;
-  }
-
-  .base {
-    width: 170px;
-    position: relative;
-    z-index: 0;
-  }
-
-  .framework,
-  .vite {
-    position: absolute;
-  }
-
-  .framework {
-    z-index: 1;
-    top: 34px;
-    height: 28px;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(44deg) rotateY(39deg)
-      scale(1.4);
-  }
-
-  .vite {
-    z-index: 0;
-    top: 107px;
-    height: 26px;
-    width: auto;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(40deg) rotateY(39deg)
-      scale(0.8);
-  }
+/* Main container */
+.app-container {
+    min-height: 100vh;
+    padding: 40px 20px;
 }
 
-#center {
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-  place-content: center;
-  place-items: center;
-  flex-grow: 1;
-
-  @media (max-width: 1024px) {
-    padding: 32px 20px 24px;
-    gap: 18px;
-  }
-}
-
-#next-steps {
-  display: flex;
-  border-top: 1px solid var(--border);
-  text-align: left;
-
-  & > div {
-    flex: 1 1 0;
-    padding: 32px;
-    @media (max-width: 1024px) {
-      padding: 24px 20px;
-    }
-  }
-
-  .icon {
-    margin-bottom: 16px;
-    width: 22px;
-    height: 22px;
-  }
-
-  @media (max-width: 1024px) {
-    flex-direction: column;
+/* Header */
+.app-header {
     text-align: center;
-  }
+    margin-bottom: 35px;
 }
 
-#docs {
-  border-right: 1px solid var(--border);
-
-  @media (max-width: 1024px) {
-    border-right: none;
-    border-bottom: 1px solid var(--border);
-  }
+.app-header h1 {
+    font-size: 38px;
+    color: #5145a5;
+    margin-bottom: 10px;
 }
 
-#next-steps ul {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  gap: 8px;
-  margin: 32px 0 0;
-
-  .logo {
-    height: 18px;
-  }
-
-  a {
-    color: var(--text-h);
+.app-header p {
+    color: #77758a;
     font-size: 16px;
-    border-radius: 6px;
-    background: var(--social-bg);
-    display: flex;
-    padding: 6px 12px;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-    transition: box-shadow 0.3s;
+}
 
-    &:hover {
-      box-shadow: var(--shadow);
-    }
-    .button-icon {
-      height: 18px;
-      width: 18px;
-    }
-  }
+/* Create Listing Form Card */
+.create-listing {
+    background-color: white;
+    max-width: 650px;
+    margin: 0 auto;
+    padding: 35px;
+    border-radius: 16px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.07);
+}
 
-  @media (max-width: 1024px) {
+/* Form heading */
+.create-listing h1 {
+    text-align: center;
+    color: #302d50;
+    font-size: 38px;
+    line-height: 1.2;
+    margin-top: 0;
+    margin-bottom: 12px;
+}
+
+.create-listing > p {
+    text-align: center;
+    color: #888;
+    font-size: 16px;
+    line-height: 1.5;
+    margin-top: 0;
+    margin-bottom: 30px;
+}
+
+/* Labels */
+.create-listing label {
+    display: block;
+    margin-bottom: 8px;
+    margin-top: 18px;
+    font-weight: bold;
+    color: #45415f;
+}
+
+/* Inputs and dropdowns */
+.create-listing input,
+.create-listing textarea,
+.create-listing select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #dddbea;
+    border-radius: 8px;
+    font-size: 14px;
+    box-sizing: border-box;
+    background-color: #fafaff;
+    color: #333;
+    outline: none;
+}
+
+/* Focus effect */
+.create-listing input:focus,
+.create-listing textarea:focus,
+.create-listing select:focus {
+    border-color: #7062c7;
+    box-shadow: 0 0 0 3px rgba(112, 98, 199, 0.12);
+}
+
+/* Description */
+.create-listing textarea {
+    min-height: 110px;
+    resize: vertical;
+}
+
+/* Available time slots heading */
+.create-listing h3 {
+    margin-top: 30px;
+    color: #5145a5;
+}
+
+/* Individual time slot cards */
+.create-listing form > div {
+    background-color: #f8f7ff;
+    padding: 18px;
+    margin-top: 15px;
+    border-radius: 10px;
+    border: 1px solid #e7e3fa;
+}
+
+.create-listing h4 {
+    color: #5145a5;
+    margin-top: 0;
+}
+
+/* Buttons */
+.create-listing button {
+    padding: 12px 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 15px;
+    transition: 0.2s;
+}
+
+/* Create listing button */
+.create-listing button[type="submit"] {
+    background-color: #5145a5;
+    color: white;
+    width: 100%;
+}
+
+.create-listing button[type="submit"]:hover {
+    background-color: #3e3485;
+}
+
+/* Add slot button */
+.create-listing button[type="button"] {
+    background-color: #e9e5ff;
+    color: #5145a5;
+    margin-right: 10px;
+}
+
+.create-listing button[type="button"]:hover {
+    background-color: #dcd5ff;
+}
+
+/* Success and error messages */
+.create-listing form > p {
+    text-align: center;
     margin-top: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-
-    li {
-      flex: 1 1 calc(50% - 8px);
-    }
-
-    a {
-      width: 100%;
-      justify-content: center;
-      box-sizing: border-box;
-    }
-  }
+    font-weight: bold;
+    color: #27834c;
 }
 
-#spacer {
-  height: 88px;
-  border-top: 1px solid var(--border);
-  @media (max-width: 1024px) {
-    height: 48px;
-  }
+/* Mobile layout for Create Listing */
+@media (max-width: 600px) {
+    .app-container {
+        padding: 20px 12px;
+    }
+
+    .create-listing {
+        padding: 22px;
+    }
+
+    .app-header h1 {
+        font-size: 30px;
+    }
 }
 
-.ticks {
-  position: relative;
-  width: 100%;
+/* My Listings Dashboard */
+.my-listings {
+    max-width: 900px;
+    margin: 50px auto;
+}
 
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    top: -4.5px;
-    border: 5px solid transparent;
-  }
+.my-listings > h1 {
+    text-align: center;
+    color: #302d50;
+}
 
-  &::before {
-    left: 0;
-    border-left-color: var(--border);
-  }
-  &::after {
-    right: 0;
-    border-right-color: var(--border);
-  }
+.my-listings > p {
+    text-align: center;
+    color: #888;
+    margin-bottom: 30px;
+}
+
+/* Listings grid */
+.listings-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+/* Individual listing card */
+.listing-card {
+    background: white;
+    padding: 22px;
+    border-radius: 14px;
+    border: 1px solid #e7e3fa;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* Listing header */
+.listing-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.listing-header h3 {
+    color: #5145a5;
+}
+
+/* Active and inactive status */
+.status {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.status.active {
+    background: #e0f5e8;
+    color: #27834c;
+}
+
+.status.inactive {
+    background: #eeeeee;
+    color: #777;
+}
+
+/* Listing headings */
+.listing-card h4 {
+    color: #5145a5;
+}
+
+/* Listing action buttons */
+.listing-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.listing-actions button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    background: #e9e5ff;
+    color: #5145a5;
+    font-weight: bold;
+}
+
+/* Delete button */
+.listing-actions .delete-button {
+    background: #ffe5e5;
+    color: #c0392b;
+}
+
+/* Edit Listing Form */
+.listing-card form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.listing-card form h3 {
+    color: #5145a5;
+    text-align: center;
+}
+
+.listing-card form label {
+    font-weight: 600;
+    color: #302d50;
+}
+
+.listing-card form input,
+.listing-card form textarea,
+.listing-card form select {
+    width: 100%;
+    padding: 11px;
+    border: 1px solid #ddd8f2;
+    border-radius: 8px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.listing-card form textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+/* Edit time slot cards */
+.edit-slot {
+    background: #f7f5ff;
+    padding: 15px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Save changes button */
+.listing-actions button[type="submit"] {
+    background: #5145a5;
+    color: white;
+}
+
+/* Cancel button */
+.listing-actions button[type="button"] {
+    background: #eeeeee;
+    color: #444;
+}
+
+/* Reactivate button */
+.listing-actions .reactivate-button {
+    background: #e0f5e8;
+    color: #27834c;
+}
+
+.listing-actions .reactivate-button:hover {
+    background: #c9eed8;
+}
+
+/* Mobile layout for My Listings */
+@media (max-width: 600px) {
+    .listing-actions {
+        flex-wrap: wrap;
+    }
+
+    .listing-actions button {
+        flex: 1;
+    }
+
+    .listing-header {
+        flex-wrap: wrap;
+    }
 }
