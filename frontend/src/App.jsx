@@ -12,6 +12,9 @@ import Profile from './pages/Profile';
 import CreateListing from './pages/CreateListing';
 import MyListings from './pages/MyListings';
 
+import MyReviews from './pages/MyReviews';
+import WriteReview from './pages/WriteReview';
+
 import './App.css';
 
 function App() {
@@ -71,6 +74,24 @@ function App() {
                     element={
                         <ProtectedRoute user={user}>
                             <MyListings />
+                        </ProtectedRoute>
+                    }
+                />
+
+                <Route
+                    path="/my-reviews"
+                    element={
+                        <ProtectedRoute user={user}>
+                            <MyReviews />
+                        </ProtectedRoute>
+                    }
+                />
+
+                <Route
+                    path="/review/:sessionId/:tutorId"
+                    element={
+                        <ProtectedRoute user={user}>
+                            <WriteReview />
                         </ProtectedRoute>
                     }
                 />
