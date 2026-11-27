@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
@@ -14,6 +15,9 @@ import MyListings from './pages/MyListings';
 
 import MyReviews from './pages/MyReviews';
 import WriteReview from './pages/WriteReview';
+
+import BrowseListings from './pages/BrowseListings';
+import MySessions from './pages/MySessions';
 
 import './App.css';
 
@@ -79,6 +83,24 @@ function App() {
                 />
 
                 <Route
+                    path="/browse-listings"
+                    element={
+                        <ProtectedRoute user={user}>
+                            <BrowseListings />
+                        </ProtectedRoute>
+                    }
+                />
+
+                <Route
+                    path="/my-sessions"
+                    element={
+                        <ProtectedRoute user={user}>
+                            <MySessions />
+                        </ProtectedRoute>
+                    }
+                />
+
+                <Route
                     path="/my-reviews"
                     element={
                         <ProtectedRoute user={user}>
@@ -101,3 +123,4 @@ function App() {
 }
 
 export default App;
+

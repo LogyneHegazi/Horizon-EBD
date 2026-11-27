@@ -8,8 +8,8 @@ const connectDB = require('./db');
 const authRoutes = require('./routes/authRoutes');
 const reviewRoutes = require('./routes/reviewRoutes');
 const tutoringListingRoutes = require('./routes/tutoringListingRoutes');
-
-const app = express();
+const sessionRequestRoutes = require('./routes/sessionRequestRoutes');
+const app = express(); 
 
 app.use(cors());
 app.use(express.json());
@@ -25,7 +25,8 @@ app.use('/api/reviews', reviewRoutes);
 
 // Tutoring listing routes
 app.use('/api/listings', tutoringListingRoutes);
-
+// Session request routes
+app.use('/api/session-requests', sessionRequestRoutes);
 const PORT = process.env.PORT || 3000;
 
 const startServer = async () => {
@@ -37,3 +38,4 @@ const startServer = async () => {
 };
 
 startServer();
+ 
